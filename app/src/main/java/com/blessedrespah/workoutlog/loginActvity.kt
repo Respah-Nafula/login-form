@@ -2,43 +2,45 @@ package com.blessedrespah.workoutlog
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import java.lang.Error
-
 class loginActvity : AppCompatActivity() {
-     lateinit var etEmail: TextInputEditText
-     lateinit var tilEmail: TextInputLayout
-    lateinit var Password: TextInputLayout
-    lateinit var etpassword: TextInputEditText
-    lateinit var btnlogin:Button
+    lateinit var etEmail: TextInputEditText
+    lateinit var tilEmail: TextInputEditText
+    lateinit var etPassword: TextInputEditText
+    lateinit var tilPassword: TextInputEditText
+    lateinit var btnLogin:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_actvity)
-        btnlogin=findViewById(R.id.btnLogin)
+        btnLogin=findViewById(R.id.btnLogin)
+        tilPassword=findViewById(R.id.tilPassword)
+
         tilEmail=findViewById(R.id.tilEmail)
-        Password=findViewById(R.id.Password)
+        etPassword=findViewById(R.id.etPassword)
         etEmail=findViewById(R.id.etEmail)
+        btnLogin.setOnClickListener {validatelogin() }
+
     }
+
     fun validatelogin() {
         var error = false
         tilEmail.error =null
-        Password.error = null
+        tilPassword.error = null
         var email = etEmail.text.toString()
         if (email.isBlank()) {
             tilEmail.error = "Email is required"
             error = true
         }
-        var password = etpassword.text.toString()
+        var password=etPassword.text.toString()
+
         if (password.isBlank()) {
-            Password.error = "password is required"
-            btnlogin.setOnClickListener { }
+            tilPassword.error = "password is required"
             error = true
         }
+
     }
 }
-//     app:layout_constraintBottom_toBottomOf="parent"
-//app:layout_constraintTop_toTopOf="parent"
+
